@@ -1,8 +1,5 @@
 package com.project.hoang.androidmail;
 
-/**
- * Created by Hoang on 7/10/2017.
- */
 import android.util.Log;
 
 import java.io.IOException;
@@ -15,7 +12,7 @@ import java.net.URL;
 
 
 public class URIHandler {
-    public static final String hostName = "10.0.2.2:8080"; // Use a temporary loopback to localhost
+    public static final String hostName = "xamloz.com";
 
     public static String doGet(String uri,String failure) {
         InputStream is = null;
@@ -35,20 +32,21 @@ public class URIHandler {
 
             is = conn.getInputStream();
             // Read the response as an array of chars
-            Reader reader = null;
+            Reader reader;
             reader = new InputStreamReader(is, "UTF-8");
             char[] buffer = new char[conn.getContentLength()];
             reader.read(buffer);
-            String result = new String(buffer);
             //Log.d("AndroidMail","Received: " + result);
-            return result;
+            return new String(buffer);
 
         } catch(Exception ex) {
+            Log.d("AndroidMail", "Exception in doGet1: " + ex.getMessage());
         } finally {
             if (is != null) {
                 try {
                     is.close();
                 } catch (IOException ex) {
+                    Log.d("AndroidMail", "Exception in doGet2: " + ex.getMessage());
                 }
             }
         }
@@ -75,20 +73,21 @@ public class URIHandler {
 
             is = conn.getInputStream();
             // Read the response as an array of char
-            Reader reader = null;
+            Reader reader;
             reader = new InputStreamReader(is, "UTF-8");
             char[] buffer = new char[conn.getContentLength()];
             reader.read(buffer);
             // Convert the array of chars to a String and return that
-            String result = new String(buffer);
             //Log.d("AndroidMail","Received: " + result);
-            return result;
+            return new String(buffer);
         } catch(Exception ex) {
+            Log.d("AndroidMail", "Exception in doPost1: " + ex.getMessage());
         } finally {
             if (is != null) {
                 try {
                     is.close();
                 } catch (IOException ex) {
+                    Log.d("AndroidMail", "Exception in doPost2: " + ex.getMessage());
                 }
             }
         }
@@ -106,7 +105,7 @@ public class URIHandler {
             conn.connect();
             int responseCode = conn.getResponseCode();
         } catch (Exception ex) {
-
+            Log.d("AndroidMail", "Exception in doDelete: " + ex.getMessage());
         }
     }
 }

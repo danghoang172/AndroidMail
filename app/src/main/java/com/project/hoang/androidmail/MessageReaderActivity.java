@@ -49,7 +49,7 @@ public class MessageReaderActivity extends AppCompatActivity {
         private String uri;
 
         MessageTask() {
-            uri = "http://" + URIHandler.hostName + "/cakephp/messages/view/" + messageId + ".json";
+            uri = "http://" + URIHandler.hostName + "/cake/messages/view/" + messageId + ".json";
         }
 
         @Override
@@ -65,7 +65,7 @@ public class MessageReaderActivity extends AppCompatActivity {
     }
 
     private void loadMessage(String json) {
-        JSONObject m = null;
+        JSONObject m;
         try {
             m = (new JSONObject(json)).getJSONObject("message");
             TextView senderText = (TextView) this.findViewById(R.id.sender_text);
@@ -92,8 +92,8 @@ public class MessageReaderActivity extends AppCompatActivity {
         private String uriMessage;
         // Need to delete both in recipients table and messages table
         DeleteTask() {
-            uri = "http://" + URIHandler.hostName + "/cakephp/recipients/delete/" + recipientId + ".json";
-            //uriMessage = "http://" + URIHandler.hostName + "/cakephp/messages/delete/" + messageId + ".json";
+            uri = "http://" + URIHandler.hostName + "/cake/recipients/delete/" + recipientId + ".json";
+            //uriMessage = "http://" + URIHandler.hostName + "/cake/messages/delete/" + messageId + ".json";
         }
 
         @Override

@@ -83,7 +83,7 @@ public class MessagePickerActivity extends AppCompatActivity {
         private String uri;
 
         HandlesTask() {
-            uri = "http://" + URIHandler.hostName + "/cakephp/handle/view.json?id=" + userID;
+            uri = "http://" + URIHandler.hostName + "/cake/handle/view.json?id=" + userID;
         }
 
         @Override
@@ -102,7 +102,7 @@ public class MessagePickerActivity extends AppCompatActivity {
         private String uri;
 
         DeleteTask(String id) {
-            uri = "http://" + URIHandler.hostName + "/cakephp/recipients/delete/" + id + ".json";
+            uri = "http://" + URIHandler.hostName + "/cake/recipients/delete/" + id + ".json";
         }
 
         @Override
@@ -121,7 +121,7 @@ public class MessagePickerActivity extends AppCompatActivity {
 
     private void loadHandles(String json) {
         handles = null;
-        String[] handleStrs = null;
+        String[] handleStrs;
 
         ListView handlesList = (ListView) findViewById(R.id.message_list);
 

@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         private String uri;
         private String user, password;
         NewUserTask(String userName,String password) {
-            uri="http://"+URIHandler.hostName+"/cakephp/users/add.json";
+            uri="http://"+URIHandler.hostName+"/cake/users/add.json";
             this.user = userName;
             this.password = password;
         }
@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
         private String user, password;
 
         LogInTask(String userName,String password) {
-            uri="http://"+URIHandler.hostName+"/cakephp/users/login.json";
+            uri="http://"+URIHandler.hostName+"/cake/users/login.json";
             this.user = userName;
             this.password = password;
         }

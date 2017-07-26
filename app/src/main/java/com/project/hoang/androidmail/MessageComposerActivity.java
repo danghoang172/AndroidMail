@@ -68,7 +68,7 @@ public class MessageComposerActivity extends AppCompatActivity {
         private String uri;
         private JSONObject toSend;
         NewMessageTask(JSONObject toSend) {
-            uri = "http://" + URIHandler.hostName + "/cakephp/messages/add.json";
+            uri = "http://" + URIHandler.hostName + "/cake/messages/add.json";
             this.toSend = toSend;
         }
 
@@ -88,7 +88,7 @@ public class MessageComposerActivity extends AppCompatActivity {
                 processRecipients(messageId);
             } catch (JSONException e) {
                 e.printStackTrace();
-            };
+            }
 
         }
     }
@@ -111,7 +111,7 @@ public class MessageComposerActivity extends AppCompatActivity {
         private String uri;
         private String id;
         LookupRecipientTask(String recipient,String id) {
-            uri = "http://" + URIHandler.hostName + "/cakephp/users/findID.json?recipient=" + recipient;
+            uri = "http://" + URIHandler.hostName + "/cake/users/findID.json?recipient=" + recipient;
             this.id = id;
         }
 
@@ -126,7 +126,7 @@ public class MessageComposerActivity extends AppCompatActivity {
             // Once the task concludes and we have a recipient number, we
             // can launch another task to post this recipient.
             //Log.d("RESTMail","afdter received: " + result);
-            String userId = null;
+            String userId;
             try {
                 userId = (new JSONObject(result)).getString("id");
                 addRecipient(userId ,id);
@@ -146,7 +146,7 @@ public class MessageComposerActivity extends AppCompatActivity {
         private String uri;
         private String json;
         PostRecipientTask(String recipient,String message) {
-            uri = "http://" + URIHandler.hostName + "/cakephp/recipients/add.json";
+            uri = "http://" + URIHandler.hostName + "/cake/recipients/add.json";
             json = "{\"recipient\":" + recipient +
                     ",\"message_id\":" + message +
                     "}";
