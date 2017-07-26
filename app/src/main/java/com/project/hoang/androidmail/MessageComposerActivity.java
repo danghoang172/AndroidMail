@@ -84,7 +84,6 @@ public class MessageComposerActivity extends AppCompatActivity {
             try {
                 JSONObject msg = (new JSONObject(result)).getJSONObject("msg");
                 String messageId = msg.getString("id");
-                //Log.d("RESTMail","afdter received: " + messageId);
                 processRecipients(messageId);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -125,7 +124,6 @@ public class MessageComposerActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             // Once the task concludes and we have a recipient number, we
             // can launch another task to post this recipient.
-            //Log.d("RESTMail","afdter received: " + result);
             String userId;
             try {
                 userId = (new JSONObject(result)).getString("id");

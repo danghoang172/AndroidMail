@@ -12,31 +12,26 @@ import java.net.URL;
 
 
 public class URIHandler {
+    //public static final String hostName = "10.0.2.2:8080";
     public static final String hostName = "xamloz.com";
 
     public static String doGet(String uri,String failure) {
         InputStream is = null;
 
         try {
-            //Log.d("AndroidMail","GET uri: " + uri);
             URL url = new URL(uri);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setDoInput(true);
-
-            // Starts the query
             conn.connect();
             int response = conn.getResponseCode();
             if (response != 200)
                 return failure;
-
             is = conn.getInputStream();
-            // Read the response as an array of chars
             Reader reader;
             reader = new InputStreamReader(is, "UTF-8");
             char[] buffer = new char[conn.getContentLength()];
             reader.read(buffer);
-            //Log.d("AndroidMail","Received: " + result);
             return new String(buffer);
 
         } catch(Exception ex) {
@@ -57,28 +52,20 @@ public class URIHandler {
         InputStream is = null;
 
         try {
-            //Log.d("AndroidMail","Post uri: " + uri);
             URL url = new URL(uri);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
-            //Log.d("RESTMail","Posted: " + data);
             conn.setDoInput(true);
             conn.setDoOutput(true);
             OutputStream os = conn.getOutputStream();
             os.write(data.getBytes());
             os.flush();
-
-            // Starts the query
             conn.connect();
-
             is = conn.getInputStream();
-            // Read the response as an array of char
             Reader reader;
             reader = new InputStreamReader(is, "UTF-8");
             char[] buffer = new char[conn.getContentLength()];
             reader.read(buffer);
-            // Convert the array of chars to a String and return that
-            //Log.d("AndroidMail","Received: " + result);
             return new String(buffer);
         } catch(Exception ex) {
             Log.d("AndroidMail", "Exception in doPost1: " + ex.getMessage());
@@ -100,8 +87,6 @@ public class URIHandler {
             URL url = new URL(uri);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("DELETE");
-
-            // Starts the query
             conn.connect();
             int responseCode = conn.getResponseCode();
         } catch (Exception ex) {

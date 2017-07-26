@@ -69,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                     JSONObject user = (new JSONObject(result)).getJSONObject("user");
                     String id = user.getString("id");
                     goToMain(id);
-                    Log.d("AndroidMail","ID: " + id);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -120,7 +119,6 @@ public class LoginActivity extends AppCompatActivity {
                     JSONObject user = new JSONObject((new JSONObject(result)).getString("user"));
                     String id = user.getString("id");
                     goToMain(id);
-                    Log.d("AndroidMail","ID: " + id);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
